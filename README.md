@@ -2,22 +2,35 @@
 
 [![](https://img.shields.io/badge/language-python-blue.svg)](https://github.com/Lan-ce-lot)
 ![](https://img.shields.io/badge/license-Apache-blue.svg)
-
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/lan-ce-lot/pythorch_text_classification/master?logoColor=blue)
-## Background
-一个简单的科研训练项目，
 
-## 📥 Install
+## 🌐 介绍
+一个简单的科研训练项目，基于神经网络的文本分类，为啥不做`CV`，还不是因为对`NLP`感兴趣~~(bushi)~~
 
-## 🛠 Usage
+## 📥 安装
 
-## Badge
+## 🛠 使用
 
-## 相关项目（可选）
+## 🌏 环境
+> python 3.7
+> pytorch 1.7
+> tqdm
+> sklearn
+> request
+> numpy
 
-## 主要项目负责人
-
-## 参与贡献方式
-
+## 💾 数据集
+> 还没爬完 🤡
+爬取自[豆瓣短评](https://movie.douban.com/)
+豆瓣改版后加了很反爬机制，爬多了会封ip封号，解决办法：
+> * 代理ip(免费不能用，要钱买不起)
+> * 随机时间(>=5s)+随机User-Agent
+## 🚙 模型
+* BERT(Bidirectional Encoder Representations from Transformers) ✅
+* ERNIE(Enhanced Representation through kNowledge IntEgration) ✅
+* RNN(Recurrent Neural Network) 🤡
+* CNN(Convolutional Neural Network) 🤡
+## 🍆 效果
+> 还没出结果 🤡
 ## 📝 License
 Apache © [Lan-ce-lot](https://github.com/Lan-ce-lot)
