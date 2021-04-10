@@ -70,7 +70,7 @@
 
 gitmoji --help
 
-
+~~(bushi)~~
 
 gitmoji -l
 
