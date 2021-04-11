@@ -1,4 +1,12 @@
-# coding: UTF-8
+#!/usr/bin/python
+# encoding:utf-8
+"""
+@author: lance
+@version: 1.0.0
+@license: Apache Licence
+@file: run.py
+@time: 2021/4/1 22:05
+"""
 import time
 import torch
 import numpy as np

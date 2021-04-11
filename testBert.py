@@ -1,3 +1,12 @@
+#!/usr/bin/python
+# encoding:utf-8
+"""
+@author: lance
+@version: 1.0.0
+@license: Apache Licence
+@file: testBert.py
+@time: 2021/4/1 22:05
+"""
 import torch
 import time
 import torch.nn as nn

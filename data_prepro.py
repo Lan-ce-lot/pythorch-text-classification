@@ -1,9 +1,13 @@
-from random import sample
-
-import numpy as np
+#!/usr/bin/python
+# encoding:utf-8
+"""
+@author: lance
+@version: 1.0.0
+@license: Apache Licence
+@file: data_prepro.py
+@time: 2021/4/1 22:05
+"""
 import pandas as pd
-import re
-from tqdm import tqdm
 from collections import Counter
 # 数据预处理
 def data_processor():
