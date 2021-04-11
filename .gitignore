@@ -120,6 +120,6 @@ venv.bak/
 data/
 config.json
 # bert_pretrain/
-
+emoji.md
 #  git filter-branch --force --index-filter
 #  git rm --cached --ignore-unmatch 1_drop.xls --prune-empty --tag-name-filter cat -- --all
