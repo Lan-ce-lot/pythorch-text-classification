@@ -37,7 +37,7 @@ def save_txt(url, tmp):
     with open(url, 'w', encoding='utf-8') as f:
         for i in tmp:
             f.write(i[0] + '\t\t\t\t')
-            f.write(str(int(i[1])) + '\n')
+            f.write(str(int(i[1]) - 1) + '\n')
     print('保存{}行'.format(len(tmp)))
 
 if __name__ == '__main__':

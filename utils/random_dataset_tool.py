@@ -26,9 +26,9 @@ def random_set():
     train_set = res[:56000]
     test_set = res[56000:61000]
     dev_set = res[61000:66000]
-    save_txt('data\\train_set.txt', train_set)
-    save_txt('data\\test_set.txt', test_set)
-    save_txt('data\\dev_set.txt', dev_set)
+    save_txt('data\\train.txt', train_set)
+    save_txt('data\\test.txt', test_set)
+    save_txt('data\\dev.txt', dev_set)
 
 
 if __name__ == '__main__':

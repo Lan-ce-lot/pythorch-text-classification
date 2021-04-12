@@ -10,7 +10,7 @@
 ## 📥 安装
 `git clone https://github.com/Lan-ce-lot/pythorch_text_classification.git`
 ## 🛠 使用
-
+`python run.py --model bert`
 ## 🌏 环境
 > * python 3.7
 > * pytorch 1.7

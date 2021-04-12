@@ -24,7 +24,8 @@ def build_dataset(config):
                 lin = line.strip()
                 if not lin:
                     continue
-                content, label = lin.split('\t')
+                # content, label = lin.split('\t')
+                content, label = lin.split('\t\t\t\t')
                 token = config.tokenizer.tokenize(content)
                 token = [CLS] + token
                 seq_len = len(token)
@@ -41,8 +42,7 @@ def build_dataset(config):
                         seq_len = pad_size
                 contents.append((token_ids, int(label), seq_len, mask))
         return contents
-    # train = load_dataset(config.train_path, config.pad_size)
-    train = load_dataset(config.dev_path, config.pad_size)
+    train = load_dataset(config.train_path, config.pad_size)
     dev = load_dataset(config.dev_path, config.pad_size)
     test = load_dataset(config.test_path, config.pad_size)
     return train, dev, test
