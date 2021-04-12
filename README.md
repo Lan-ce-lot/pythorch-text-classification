@@ -31,6 +31,14 @@
 * RNN(Recurrent Neural Network) 🤡
 * CNN(Convolutional Neural Network) 🤡
 ## 🍆 效果
-> 还没出结果 🤡
+
+|            | Test Acc | Test Loss |
+| ---------- | -------- | --------- |
+| 第一次测试 | 86.64%   | 0.35      |
+|            |          |           |
+|            |          |           |
+
+
+
 ## 📝 License
 Apache © [Lan-ce-lot](https://github.com/Lan-ce-lot)
