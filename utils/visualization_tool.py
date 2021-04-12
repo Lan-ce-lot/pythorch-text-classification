@@ -31,7 +31,6 @@ def draw_bar():
     plt.style.use('ggplot')
     plt.rcParams['font.sans-serif'] = ['KaiTi']
     labels = ['好评', '差评']
-
     plt.bar(range(len(data)), data, width=0.3, tick_label=labels)
     plt.title('评论统计')
     for a, b in zip(range(len(data)), data):  # 柱子上的数字显示
@@ -41,4 +40,3 @@ def draw_bar():
 
 if __name__ == '__main__':
     draw_bar()
-    pass
