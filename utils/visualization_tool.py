@@ -21,10 +21,11 @@ def open_txt(url):
 
 
 def draw_bar():
-    res = open_txt('1.txt')
+    res = open_txt('2.txt')
+    print('总共%d条' % len(res))
     data = [0, 0]
     for i in res:
-        if i[1] == '1':
+        if i[1] == '0':
             data[0] += 1
         else:
             data[1] += 1
@@ -32,7 +33,7 @@ def draw_bar():
     plt.rcParams['font.sans-serif'] = ['KaiTi']
     labels = ['好评', '差评']
     plt.bar(range(len(data)), data, width=0.3, tick_label=labels)
-    plt.title('评论统计')
+    plt.title('%d条评论统计' % len(res))
     for a, b in zip(range(len(data)), data):  # 柱子上的数字显示
         plt.text(a, b, '%d' % b, ha='center', va='bottom', fontsize=10)
     plt.show()

@@ -19,16 +19,18 @@ from excel_to_txt_tool import save_txt
 
 
 def random_set():
-    res = open_txt('test.txt')
+    res = open_txt('2.txt')
     random.shuffle(res)
-    res = res[:66000]
-    print(len(res))
-    train_set = res[:56000]
-    test_set = res[56000:61000]
-    dev_set = res[61000:66000]
-    save_txt('data\\train.txt', train_set)
-    save_txt('data\\test.txt', test_set)
-    save_txt('data\\dev.txt', dev_set)
+    random.shuffle(res)
+    length = len(res)
+    dev_length = test_length = int(length * 0.1)
+    train_length = length - dev_length * 2
+    test_set = res[:test_length]
+    dev_set = res[test_length:test_length + dev_length]
+    train_set = res[test_length + dev_length:]
+    save_txt('data\\' + 'data_2\\' + 'train.txt', train_set)
+    save_txt('data\\' + 'data_2\\' + 'test.txt', test_set)
+    save_txt('data\\' + 'data_2\\' + 'dev.txt', dev_set)
 
 
 if __name__ == '__main__':

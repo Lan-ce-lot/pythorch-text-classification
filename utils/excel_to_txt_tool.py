@@ -34,12 +34,13 @@ def save_txt(url):
 
 
 def save_txt(url, tmp):
-    with open(url, 'w', encoding='utf-8') as f:
+    with open(url, 'w+', encoding='utf-8') as f:
         for i in tmp:
             f.write(i[0] + '\t\t\t\t')
-            f.write(str(int(i[1]) - 1) + '\n')
+            f.write(str(int(i[1])) + '\n')
     print('保存{}行'.format(len(tmp)))
 
+
 if __name__ == '__main__':
-    save_txt('1.txt')
+    save_txt('2.txt')
     # open_excel('clean_dataset1.xls')

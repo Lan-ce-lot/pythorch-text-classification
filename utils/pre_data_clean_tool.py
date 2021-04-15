@@ -29,7 +29,7 @@ def str_count(string):
         # 中文字符范围
         if '\u4e00' <= s <= '\u9fff':
             res += 1
-    return res >= 7
+    return 10 <= res <= 100
 
 
 def open_excel(url):
@@ -56,7 +56,7 @@ def open_excel(url):
     print(res)
     print(con)
     print(len(res))
-    save_excel(res, 'clean_dataset1.1.1.1.1.1.xls')
+    save_excel(res, 'clean_' + url)
 
 
 def save_excel(clean_list, url):
@@ -70,4 +70,4 @@ def save_excel(clean_list, url):
 
 
 if __name__ == '__main__':
-    open_excel('dataset1.1.1.1.1.1.xls')
+    open_excel('dataset1.xls')

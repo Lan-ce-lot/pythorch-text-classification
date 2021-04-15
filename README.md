@@ -31,12 +31,7 @@
 * RNN(Recurrent Neural Network) 🤡
 * CNN(Convolutional Neural Network) 🤡
 ## 🍆 效果
-
-|            | Test Acc | Test Loss |
-| ---------- | -------- | --------- |
-| 第一次测试 | 86.64%   | 0.35      |
-|            |          |           |
-|            |          |           |
+pass
 
 
 

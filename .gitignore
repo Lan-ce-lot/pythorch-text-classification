@@ -116,6 +116,8 @@ venv.bak/
 
 # git filter-branch --force --index-filter "git rm --cached --ignore-unmatch bert_pretrain/pytorch_model.bin"  --prune-empty --tag-name-filter cat -- --all
 第五部分 Python数据可视化/
+ERNIE_pretrain
+random_data
 *.txt
 data/
 config.json
