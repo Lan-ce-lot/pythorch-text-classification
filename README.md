@@ -5,7 +5,7 @@
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/lan-ce-lot/pythorch_text_classification/master?logoColor=blue)
 
 ## 🌐 介绍
-一个简单的科研训练项目，基于神经网络的文本分类，为啥不做`CV`，还不是因为对`NLP`感兴趣<del>(bushi)</del>
+一个简单的科研训练项目，基于神经网络的文本分类，为啥不做`CV`，还不是因为对`NLP`感兴趣~~(bushi)~~
 
 ## 📥 安装
 `git clone https://github.com/Lan-ce-lot/pythorch_text_classification.git`
