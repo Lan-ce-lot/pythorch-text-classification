@@ -70,9 +70,9 @@ class MainUi(QtWidgets.QMainWindow):
 
     def reply(self, s):  # 回复
         if self.model_id == 0:
-            from RNN_test import read, predict
+            from RNN_exporter import read, predict
         else:
-            from bert_test import read, predict
+            from bert_exporter import read, predict
         _prdeict = predict(read(s))[0]
         print(_prdeict)
         if _prdeict == 0:

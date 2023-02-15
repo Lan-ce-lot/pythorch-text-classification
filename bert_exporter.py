@@ -4,7 +4,7 @@
 @author: lance
 @version: 1.0.0
 @license: Apache Licence
-@file: bert_test.py
+@file: bert_exporter.py
 @time: 2021/6/9 20:52
 """
 from importlib import import_module

@@ -4,7 +4,7 @@
 @author: lance
 @version: 1.0.0
 @license: Apache Licence
-@file: RNN_test.py
+@file: RNN_exporter.py
 @time: 2021/6/10 9:40
 """
 import logging
