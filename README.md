@@ -20,6 +20,11 @@
 > * numpy
 
 ## 💾 数据集
+
+![img_8.png](img/img_8.png)
+
+![img_7.png](img/img_7.png)
+
 >爬取自[豆瓣短评](https://movie.douban.com/)
 >
 >豆瓣改版后加了很反爬机制，爬多了会封ip封号，解决办法：
@@ -30,9 +35,42 @@
 * ERNIE(Enhanced Representation through kNowledge IntEgration) ✅
 * RNN(Recurrent Neural Network) 🤡
 * CNN(Convolutional Neural Network) 🤡
-## 🍆 效果
-pass
 
+## 📊 结果
+![img_5.png](img/img_5.png)
+图  15 BiLSTM和BERT在训练集上的准确率对比
+![img_6.png](img/img_6.png)
+图  16 BiLSTM和BERT在训练集上的loss对比
+
+---
+
+模型	训练集损失率	训练集准确率	测试集损失率	测试集准确率
+BiLSTM	0.29	0. 93	0.32	0.87
+BERT	0.03	0. 98	0.21	0.92
+
+模型	训练集损失率	训练集准确率	测试集损失率	测试集准确率
+BiLSTM	0.29	0. 93	0.32	0.87
+BERT	0.03	0. 98	0.21	0.92
+
+## 📈 进度
+
+
+## 📦 依赖
+
+## 程序
+采用python的pythonQt编写，
+设计的两个按钮一个是提交，一个是清空，中间的文本框可用输入文字，左侧会显示情感分析结果，判断积极消极的情感。该程序布局如下图
+![](img/img_4.png)
+
+![img.png](img/img.png)
+
+![img_1.png](img/img_1.png)
+
+![img_2.png](img/img_2.png)
+
+![img_3.png](img/img_3.png)
+
+## 📚 参考
 
 
 ## 📝 License
