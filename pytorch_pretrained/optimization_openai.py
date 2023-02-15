@@ -51,7 +51,8 @@ class OpenAIAdam(Optimizer):
         else:
             if warmup != -1 or t_total != -1:
                 logger.warning(
-                    "warmup and t_total on the optimizer are ineffective when _LRSchedule object is provided as schedule. "
+                    "warmup and t_total on the optimizer are "
+                    "ineffective when _LRSchedule object is provided as schedule. "
                     "Please specify custom warmup and t_total in _LRSchedule object.")
         defaults = dict(lr=lr, schedule=schedule,
                         b1=b1, b2=b2, e=e, weight_decay=weight_decay, vector_l2=vector_l2,

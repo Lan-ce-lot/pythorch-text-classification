@@ -8,15 +8,13 @@
 @time: 2021/4/29 14:09
 """
 import numpy as np
-# demo.py
-# tensorboard --logdir=
 import torch
 import torchvision.models as models
 import torchvision.utils as vutils
 from tensorboardX import SummaryWriter
 from torchvision import datasets
 
-resnet18 = models.resnet18(False)
+resnet18 = models.resnet18(progress=False)
 writer = SummaryWriter()
 sample_rate = 44100
 freqs = [262, 294, 330, 349, 392, 440, 440, 440, 440, 440, 440]

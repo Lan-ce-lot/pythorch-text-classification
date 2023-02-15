@@ -9,7 +9,6 @@
 """
 from excel_to_txt_tool import save_txt
 from pre_data_clean_tool import *
-from visualization_tool import open_txt
 
 
 def open_txt(url):

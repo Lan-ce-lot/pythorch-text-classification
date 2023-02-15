@@ -25,7 +25,9 @@ class MainUi(QtWidgets.QMainWindow):
         self.clearbutton = QtWidgets.QPushButton(
             # qtawesome.icon('mdi.delete-outline', color='white'),
             "清空")
-        self.submit = QtWidgets.QPushButton(qtawesome.icon('fa.check', color='white'), "提交")
+        self.submit = QtWidgets.QPushButton(
+            qtawesome.icon('fa.check', color='white'),
+            "提交")
         self.gender_combo = QComboBox()
         self.gender_label = QLabel('模型选择')
         self.left_mini = QtWidgets.QPushButton("")  # 最小化按钮

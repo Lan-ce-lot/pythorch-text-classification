@@ -17,7 +17,10 @@ import torch
 from my_utils import build_iterator
 
 UNK, PAD = '<UNK>', '<PAD>'  # 未知字，padding符号
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 dataset = 'data'
 x = import_module('models.TextRNN')
 # x = import_module('models.bert')

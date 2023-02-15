@@ -24,7 +24,7 @@ def open_excel(url):
     return res
 
 
-def save_txt(url):
+def save(url):
     tmp = open_excel('clean_dataset1.xls')
     with open(url, 'a', encoding='utf-8') as f:
         for i in tmp:
@@ -42,5 +42,5 @@ def save_txt(url, tmp):
 
 
 if __name__ == '__main__':
-    save_txt('2.txt')
+    save('2.txt')
     # open_excel('clean_dataset1.xls')

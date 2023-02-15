@@ -118,8 +118,8 @@ class DatasetIterator(object):
 
 
 def build_iterator(dataset, config):
-    iter = DatasetIterator(dataset, config.batch_size, config.device)
-    return iter
+    it = DatasetIterator(dataset, config.batch_size, config.device)
+    return it
 
 
 def get_time_dif(start_time):
