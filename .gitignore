@@ -130,3 +130,4 @@ config.json
 emoji.md
 #  git filter-branch --force --index-filter
 #  git rm --cached --ignore-unmatch 1_drop.xls --prune-empty --tag-name-filter cat -- --all
+/tensorboard-X/runs/

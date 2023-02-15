@@ -11,8 +11,7 @@ import torch
 import time
 import torch.nn as nn
 import torch.nn.functional as F
-from pytorch_pretrained_bert import BertModel, BertTokenizer, BertConfig, BertAdam
-import pandas as pd
+from pytorch_pretrained import BertModel, BertTokenizer, BertConfig, BertAdam
 import numpy as np
 from torch.autograd import Variable
 from torch.utils.data import DataLoader, TensorDataset, RandomSampler, SequentialSampler

@@ -10,7 +10,20 @@
 ## 📥 安装
 `git clone https://github.com/Lan-ce-lot/pythorch-text-classification.git`
 ## 🛠 使用
-`python run.py --model bert`
+```shell
+# conda (recommended) to create a new conda env
+conda env create -f environment.yaml
+# or
+conda install --yes --file requirements.txt
+# pip
+pip install -r requirements.txt
+```
+
+```shell
+python run.py --model bert
+```
+
+
 ## 🌏 环境
 > * python 3.7
 > * pytorch 1.7
@@ -33,10 +46,16 @@
 * CNN(Convolutional Neural Network) 🤡
 
 ## 📊 结果
+集成了`tensorboard`，可以直接在终端查看训练过程
+```shell
+tensorboard --logdir=./data/log/textRNN
+```
+![img.png](tensorboard-X/img.png)
+
 ![img_5.png](img/img_5.png)
-图  15 BiLSTM和BERT在训练集上的准确率对比
+BiLSTM和BERT在训练集上的准确率对比
 ![img_6.png](img/img_6.png)
-图  16 BiLSTM和BERT在训练集上的loss对比
+BiLSTM和BERT在训练集上的loss对比
 
 ---
 
