@@ -7,14 +7,14 @@
 @file: demo.py
 @time: 2021/4/29 14:09
 """
+import numpy as np
 # demo.py
 # tensorboard --logdir=
 import torch
-import torchvision.utils as vutils
-import numpy as np
 import torchvision.models as models
-from torchvision import datasets
+import torchvision.utils as vutils
 from tensorboardX import SummaryWriter
+from torchvision import datasets
 
 resnet18 = models.resnet18(False)
 writer = SummaryWriter()

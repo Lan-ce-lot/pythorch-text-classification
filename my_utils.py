@@ -1,12 +1,12 @@
 # coding: UTF-8
 import os
-import torch
-import numpy as np
 import pickle as pkl
-from tqdm import tqdm
 import time
 from datetime import timedelta
 
+import numpy as np
+import torch
+from tqdm import tqdm
 
 MAX_VOCAB_SIZE = 10000  # 词表长度限制
 UNK, PAD = '<UNK>', '<PAD>'  # 未知字，padding符号
@@ -22,7 +22,8 @@ def build_vocab(file_path, tokenizer, max_size, min_freq):
             content = lin.split('\t\t\t\t')[0]
             for word in tokenizer(content):
                 vocab_dic[word] = vocab_dic.get(word, 0) + 1
-        vocab_list = sorted([_ for _ in vocab_dic.items() if _[1] >= min_freq], key=lambda x: x[1], reverse=True)[:max_size]
+        vocab_list = sorted([_ for _ in vocab_dic.items() if _[1] >= min_freq], key=lambda x: x[1], reverse=True)[
+                     :max_size]
         vocab_dic = {word_count[0]: idx for idx, word_count in enumerate(vocab_list)}
         vocab_dic.update({UNK: len(vocab_dic), PAD: len(vocab_dic) + 1})
     return vocab_dic
@@ -62,6 +63,7 @@ def build_dataset(config, ues_word):
                     words_line.append(vocab.get(word, vocab.get(UNK)))
                 contents.append((words_line, int(label), seq_len))
         return contents  # [([...], 0), ([...], 1), ...]
+
     train = load_dataset(config.train_path, config.pad_size)
     dev = load_dataset(config.dev_path, config.pad_size)
     test = load_dataset(config.test_path, config.pad_size)

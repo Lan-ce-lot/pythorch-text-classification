@@ -9,12 +9,12 @@
 """
 import random
 import time
+
 import requests
-from lxml import etree
-import xlwt
 import xlrd
-from xlutils.copy import copy
+from lxml import etree
 from tqdm import tqdm
+from xlutils.copy import copy
 
 """
 Cookie: bid=2YpxwjK9lvQ; douban-fav-remind=1; ll="118209"; ct=y; push_noty_num=0; push_doumail_num=0; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1617723515%2C%22https%3A%2F%2Fcn.bing.com%2F%22%5D; _pk_ses.100001.8cb4=*; ap_v=0,6.0; dbcl2="214312932:MYXGJCiIg0Y"; ck=0Amj; _pk_id.100001.8cb4=a68abd16218042d2.1603972914.12.1617723615.1617684722.

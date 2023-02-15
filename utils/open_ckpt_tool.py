@@ -7,13 +7,9 @@
 @file: open_ckpt_tool.py
 @time: 2021/4/13 9:41
 """
-import torch
-from utils import build_dataset, build_iterator, get_time_dif
-import time
-import torch
-import numpy as np
-from train_eval import train, init_network
 from importlib import import_module
+
+import torch
 
 if __name__ == '__main__':
     # 加载

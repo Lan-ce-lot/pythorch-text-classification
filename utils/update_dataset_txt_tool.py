@@ -8,8 +8,9 @@
 @time: 2021/4/15 13:10
 """
 from excel_to_txt_tool import save_txt
-from visualization_tool import open_txt
 from pre_data_clean_tool import *
+from visualization_tool import open_txt
+
 
 def open_txt(url):
     res = []
@@ -29,9 +30,6 @@ def update_txt(from_url, to_url):
     print(res)
     print(len(res))
     save_txt(to_url, res)
-
-
-
 
 
 if __name__ == '__main__':

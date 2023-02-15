@@ -7,16 +7,16 @@
 @file: utils.py
 @time: 2021/4/1 22:05
 """
-import torch
-from tqdm import tqdm
 import time
 from datetime import timedelta
+
+import torch
+from tqdm import tqdm
 
 PAD, CLS = '[PAD]', '[CLS]'  # padding符号, bert中综合信息符号
 
 
 def build_dataset(config):
-
     def load_dataset(path, pad_size=32):
         contents = []
         with open(path, 'r', encoding='UTF-8') as f:
@@ -42,6 +42,7 @@ def build_dataset(config):
                         seq_len = pad_size
                 contents.append((token_ids, int(label), seq_len, mask))
         return contents
+
     train = load_dataset(config.train_path, config.pad_size)
     dev = load_dataset(config.dev_path, config.pad_size)
     test = load_dataset(config.test_path, config.pad_size)

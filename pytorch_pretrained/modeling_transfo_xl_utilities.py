@@ -17,13 +17,10 @@
     Directly adapted from https://github.com/kimiyoung/transformer-xl.
 """
 
-from collections import defaultdict
-
-import numpy as np
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
 
 # CUDA_MAJOR = int(torch.version.cuda.split('.')[0])
 # CUDA_MINOR = int(torch.version.cuda.split('.')[1])
@@ -64,14 +61,14 @@ class ProjectedAdaptiveLogSoftmax(nn.Module):
             self.out_layers.append(nn.Linear(d_embed, n_token))
         else:
             for i in range(len(self.cutoffs)):
-                l_idx, r_idx = self.cutoff_ends[i], self.cutoff_ends[i+1]
+                l_idx, r_idx = self.cutoff_ends[i], self.cutoff_ends[i + 1]
                 d_emb_i = d_embed // (div_val ** i)
 
                 self.out_projs.append(
                     nn.Parameter(torch.Tensor(d_proj, d_emb_i))
                 )
 
-                self.out_layers.append(nn.Linear(d_emb_i, r_idx-l_idx))
+                self.out_layers.append(nn.Linear(d_emb_i, r_idx - l_idx))
 
         self.keep_order = keep_order
 
@@ -108,14 +105,14 @@ class ProjectedAdaptiveLogSoftmax(nn.Module):
             target = target.view(-1)
             if hidden.size(0) != target.size(0):
                 raise RuntimeError('Input and target should have the same size '
-                                'in the batch dimension.')
+                                   'in the batch dimension.')
 
         if self.n_clusters == 0:
             logit = self._compute_logit(hidden, self.out_layers[0].weight,
                                         self.out_layers[0].bias, self.out_projs[0])
             if target is not None:
                 output = -F.log_softmax(logit, dim=-1) \
-                        .gather(1, target.unsqueeze(1)).squeeze(1)
+                    .gather(1, target.unsqueeze(1)).squeeze(1)
             else:
                 output = F.log_softmax(logit, dim=-1)
         else:
@@ -180,7 +177,7 @@ class ProjectedAdaptiveLogSoftmax(nn.Module):
                     cluster_prob_idx = self.cutoffs[0] + i - 1  # No probability for the head cluster
                     if target is not None:
                         logprob_i = head_logprob_i[:, cluster_prob_idx] \
-                                + tail_logprob_i.gather(1, target_i[:, None]).squeeze(1)
+                                    + tail_logprob_i.gather(1, target_i[:, None]).squeeze(1)
                     else:
                         logprob_i = head_logprob[:, cluster_prob_idx, None] + tail_logprob_i
                         out[:, l_idx:r_idx] = logprob_i
@@ -189,11 +186,10 @@ class ProjectedAdaptiveLogSoftmax(nn.Module):
                     if (hasattr(self, 'keep_order') and self.keep_order) or keep_order:
                         out.index_copy_(0, indices_i, -logprob_i)
                     else:
-                        out[offset:offset+logprob_i.size(0)].copy_(-logprob_i)
+                        out[offset:offset + logprob_i.size(0)].copy_(-logprob_i)
                     offset += logprob_i.size(0)
 
         return out
-
 
     def log_prob(self, hidden):
         r""" Computes log probabilities for all :math:`n\_classes`
@@ -270,7 +266,7 @@ class LogUniformSampler(object):
         """
         with torch.no_grad():
             self.range_max = range_max
-            log_indices = torch.arange(1., range_max+2., 1.).log_()
+            log_indices = torch.arange(1., range_max + 2., 1.).log_()
             self.dist = (log_indices[1:] - log_indices[:-1]) / log_indices[-1]
             # print('P', self.dist.numpy().tolist()[-30:])
 
@@ -299,6 +295,7 @@ class LogUniformSampler(object):
             samp_log_probs = self.log_q[neg_samples].to(device)
             return true_log_probs, samp_log_probs, neg_samples
 
+
 def sample_logits(embedding, bias, labels, inputs, sampler):
     """
         embedding: an nn.Embedding layer
@@ -324,9 +321,9 @@ def sample_logits(embedding, bias, labels, inputs, sampler):
     hit = (labels[:, :, None] == neg_samples).detach()
 
     true_logits = torch.einsum('ijk,ijk->ij',
-        [true_w, inputs]) + true_b - true_log_probs
+                               [true_w, inputs]) + true_b - true_log_probs
     sample_logits = torch.einsum('lk,ijk->ijl',
-        [sample_w, inputs]) + sample_b - samp_log_probs
+                                 [sample_w, inputs]) + sample_b - samp_log_probs
     sample_logits.masked_fill_(hit, -1e30)
     logits = torch.cat([true_logits[:, :, None], sample_logits], -1)
 
@@ -379,7 +376,7 @@ if __name__ == '__main__':
     # sampler = LogUniformSampler(n_vocab, unique=False)
     # new_labels, sample, sample_prob = sampler.sample(n_sample, labels)
 
-    sampler = LogUniformSampler(n_vocab, n_sample)#, unique=True)
+    sampler = LogUniformSampler(n_vocab, n_sample)  # , unique=True)
     # true_probs, samp_probs, neg_samples = sampler.sample(n_sample, labels)
 
     # print('true_probs', true_probs.numpy().tolist())
@@ -399,4 +396,3 @@ if __name__ == '__main__':
     print('logits shape', logits.size())
     print('out_labels', out_labels.detach().numpy().tolist())
     print('out_labels shape', out_labels.size())
-

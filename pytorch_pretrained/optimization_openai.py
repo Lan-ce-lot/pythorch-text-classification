@@ -14,14 +14,15 @@
 # limitations under the License.
 """PyTorch optimization for OpenAI GPT model."""
 
+import logging
 import math
+
 import torch
+from torch.nn.utils import clip_grad_norm_
 from torch.optim import Optimizer
 from torch.optim.optimizer import required
-from torch.nn.utils import clip_grad_norm_
-import logging
-from .optimization import SCHEDULES, _LRSchedule, WarmupCosineWithWarmupRestartsSchedule, \
-    WarmupCosineWithHardRestartsSchedule, WarmupCosineSchedule, WarmupLinearSchedule, WarmupConstantSchedule
+
+from .optimization import SCHEDULES, _LRSchedule
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +30,7 @@ logger = logging.getLogger(__name__)
 class OpenAIAdam(Optimizer):
     """Implements Open AI version of Adam algorithm with weight decay fix.
     """
+
     def __init__(self, params, lr=required, schedule='warmup_linear', warmup=-1, t_total=-1,
                  b1=0.9, b2=0.999, e=1e-8, weight_decay=0,
                  vector_l2=False, max_grad_norm=-1, **kwargs):
@@ -48,8 +50,9 @@ class OpenAIAdam(Optimizer):
             schedule = schedule_type(warmup=warmup, t_total=t_total)
         else:
             if warmup != -1 or t_total != -1:
-                logger.warning("warmup and t_total on the optimizer are ineffective when _LRSchedule object is provided as schedule. "
-                               "Please specify custom warmup and t_total in _LRSchedule object.")
+                logger.warning(
+                    "warmup and t_total on the optimizer are ineffective when _LRSchedule object is provided as schedule. "
+                    "Please specify custom warmup and t_total in _LRSchedule object.")
         defaults = dict(lr=lr, schedule=schedule,
                         b1=b1, b2=b2, e=e, weight_decay=weight_decay, vector_l2=vector_l2,
                         max_grad_norm=max_grad_norm)

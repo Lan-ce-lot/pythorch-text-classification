@@ -8,8 +8,10 @@
 @time: 2021/4/12 7:46
 """
 import random
-from visualization_tool import open_txt
+
 from excel_to_txt_tool import save_txt
+from visualization_tool import open_txt
+
 """
 66000
 56000

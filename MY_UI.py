@@ -1,4 +1,5 @@
-#!/usr/bin/python
+# coding: UTF-8
+# !/usr/bin/python
 # encoding:utf-8
 """
 @author: lance
@@ -9,8 +10,9 @@
 """
 import os
 import sys
+
 import qtawesome
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtWidgets
 from PyQt6.QtGui import *
 from PyQt6.QtWidgets import *
 
@@ -122,11 +124,26 @@ class MainUi(QtWidgets.QMainWindow):
         self.right_layout.addWidget(self.clearbutton, 3, 3, 1, 1)
         # Style
         self.left_close.setStyleSheet(
-            '''QPushButton{background:#F76677;border-radius:5px;}QPushButton:hover{background:red;}''')
+            '''
+            QPushButton{
+                background:#F76677;border-radius:5px;
+            }
+            QPushButton:hover{
+                background:red;
+            }
+            ''')
         self.left_visit.setStyleSheet(
-            '''QPushButton{background:#F7D674;border-radius:5px;}QPushButton:hover{background:yellow;}''')
+            '''
+            QPushButton{
+            background:#F7D674;border-radius:5px;
+            }
+            QPushButton:hover{
+            background:yellow;
+            }
+            ''')
         self.left_mini.setStyleSheet(
-            '''QPushButton{background:#6DDF6D;border-radius:5px;}QPushButton:hover{background:green;}''')
+            '''QPushButton{background:#6DDF6D;border-radius:5px;}
+            QPushButton:hover{background:green;}''')
         self.left_widget.setStyleSheet('''
             QPushButton{border:none;color:white;}
             QLabel{font-size:20px;}

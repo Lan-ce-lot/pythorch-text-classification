@@ -23,8 +23,6 @@ import re
 import sys
 from io import open
 
-from tqdm import tqdm
-
 from .file_utils import cached_path
 from .tokenization import BasicTokenizer
 
@@ -43,6 +41,7 @@ VOCAB_NAME = 'vocab.json'
 MERGES_NAME = 'merges.txt'
 SPECIAL_TOKENS_NAME = 'special_tokens.txt'
 
+
 def get_pairs(word):
     """
     Return set of symbol pairs in a word.
@@ -54,6 +53,7 @@ def get_pairs(word):
         pairs.add((prev_char, char))
         prev_char = char
     return pairs
+
 
 def text_standardize(text):
     """
@@ -70,6 +70,7 @@ def text_standardize(text):
     text = re.sub(r'[^\S\n]+', ' ', text)
     return text.strip()
 
+
 class OpenAIGPTTokenizer(object):
     """
     BPE tokenizer. Peculiarities:
@@ -78,6 +79,7 @@ class OpenAIGPTTokenizer(object):
         - argument special_tokens and function set_special_tokens:
             can be used to add additional symbols (ex: "__classify__") to a vocabulary.
     """
+
     @classmethod
     def from_pretrained(cls, pretrained_model_name_or_path, cache_dir=None, *inputs, **kwargs):
         """
@@ -145,7 +147,7 @@ class OpenAIGPTTokenizer(object):
 
         self.max_len = max_len if max_len is not None else int(1e12)
         self.encoder = json.load(open(vocab_file, encoding="utf-8"))
-        self.decoder = {v:k for k,v in self.encoder.items()}
+        self.decoder = {v: k for k, v in self.encoder.items()}
         merges = open(merges_file, encoding='utf-8').read().split('\n')[1:-1]
         merges = [tuple(merge.split()) for merge in merges]
         self.bpe_ranks = dict(zip(merges, range(len(merges))))
@@ -167,7 +169,7 @@ class OpenAIGPTTokenizer(object):
             self.special_tokens_decoder = {}
             return
         self.special_tokens = dict((tok, len(self.encoder) + i) for i, tok in enumerate(special_tokens))
-        self.special_tokens_decoder = {v:k for k, v in self.special_tokens.items()}
+        self.special_tokens_decoder = {v: k for k, v in self.special_tokens.items()}
         if self.fix_text is None:
             # Using BERT's BasicTokenizer: we can update the tokenizer
             self.nlp.never_split = special_tokens
@@ -180,7 +182,7 @@ class OpenAIGPTTokenizer(object):
         pairs = get_pairs(word)
 
         if not pairs:
-            return token+'</w>'
+            return token + '</w>'
 
         while True:
             bigram = min(pairs, key=lambda pair: self.bpe_ranks.get(pair, float('inf')))
@@ -198,8 +200,8 @@ class OpenAIGPTTokenizer(object):
                     new_word.extend(word[i:])
                     break
 
-                if word[i] == first and i < len(word)-1 and word[i+1] == second:
-                    new_word.append(first+second)
+                if word[i] == first and i < len(word) - 1 and word[i + 1] == second:
+                    new_word.append(first + second)
                     i += 2
                 else:
                     new_word.append(word[i])
@@ -272,9 +274,12 @@ class OpenAIGPTTokenizer(object):
         out_string = ''.join(tokens).replace('</w>', ' ').strip()
         if clean_up_tokenization_spaces:
             out_string = out_string.replace('<unk>', '')
-            out_string = out_string.replace(' .', '.').replace(' ?', '?').replace(' !', '!').replace(' ,', ',').replace(' ,', ','
-                    ).replace(" ' ", "'").replace(" n't", "n't").replace(" 'm", "'m").replace(" do not", " don't"
-                    ).replace(" 's", "'s").replace(" 've", "'ve").replace(" 're", "'re")
+            out_string = out_string.replace(' .', '.').replace(' ?', '?').replace(' !', '!').replace(' ,', ',').replace(
+                ' ,', ','
+                ).replace(" ' ", "'").replace(" n't", "n't").replace(" 'm", "'m").replace(" do not", " don't"
+                                                                                          ).replace(" 's",
+                                                                                                    "'s").replace(
+                " 've", "'ve").replace(" 're", "'re")
         return out_string
 
     def save_vocabulary(self, vocab_path):

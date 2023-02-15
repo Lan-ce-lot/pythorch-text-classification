@@ -1,17 +1,19 @@
 # coding: UTF-8
-import time
-import torch
-import numpy as np
-from my_train_eval import train, init_network
-from importlib import import_module
 import argparse
+import time
+from importlib import import_module
+
+import numpy as np
+import torch
+
+from my_train_eval import train, init_network
 
 parser = argparse.ArgumentParser(description='Chinese Text Classification')
-parser.add_argument('--model', type=str, required=True, help='choose a model: TextCNN, TextRNN, FastText, TextRCNN, TextRNN_Att, DPCNN, Transformer')
+parser.add_argument('--model', type=str, required=True,
+                    help='choose a model: TextCNN, TextRNN, FastText, TextRCNN, TextRNN_Att, DPCNN, Transformer')
 parser.add_argument('--embedding', default='pre_trained', type=str, help='random or pre_trained')
 parser.add_argument('--word', default=False, type=bool, help='True for word, False for char')
 args = parser.parse_args()
-
 
 if __name__ == '__main__':
     dataset = 'data'  # 数据集
@@ -23,6 +25,7 @@ if __name__ == '__main__':
     model_name = args.model  # 'TextRCNN'  # TextCNN, TextRNN, FastText, TextRCNN, TextRNN_Att, DPCNN, Transformer
     if model_name == 'FastText':
         from my_utils_fasttext import build_dataset, build_iterator, get_time_dif
+
         embedding = 'random'
     else:
         from my_utils import build_dataset, build_iterator, get_time_dif
@@ -50,4 +53,3 @@ if __name__ == '__main__':
     if model_name != 'Transformer':
         init_network(model)
     train(config, model, train_iter, dev_iter, test_iter)
-

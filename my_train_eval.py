@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sklearn import metrics
-from tensorboardX import FileWriter, SummaryWriter
+from tensorboardX import SummaryWriter
 
 from my_utils import get_time_dif
 

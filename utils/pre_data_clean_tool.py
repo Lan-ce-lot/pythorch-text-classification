@@ -9,7 +9,6 @@
 """
 import re
 
-import emojiswitch
 import xlrd
 from xlutils.copy import copy
 
@@ -60,7 +59,6 @@ def open_excel(url):
 
 
 def save_excel(clean_list, url):
-
     work = xlrd.open_workbook(url)
     workbook_1 = copy(work)
     worksheet_1 = workbook_1.get_sheet(0)

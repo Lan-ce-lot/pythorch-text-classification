@@ -1,4 +1,4 @@
-#!/usr/bin/python
+# !/usr/bin/python
 # encoding:utf-8
 """
 @author: lance
@@ -18,6 +18,7 @@ def open_txt(url):
             res.append([tmp[0].strip(), tmp[1].strip()])
     return res
 
+
 def save_txt(url):
     tmp = open_txt("汇总/new_neg.txt")
     with open(url, 'a', encoding='utf-8') as f:
@@ -30,6 +31,7 @@ def save_txt(url):
             f.write(i[0] + '\n')
     print('保存{}行'.format(len(tmp)))
 
+
 def random_(url):
     res = []
     with open(url, 'r', encoding='utf-8') as f:
@@ -39,6 +41,8 @@ def random_(url):
     # print(res)
     # print(len(res))
     return res
+
+
 def save(url):
     tmp = random_("汇总/new_neg.txt")
     random.shuffle(tmp)
@@ -47,7 +51,7 @@ def save(url):
             f.write(i)
     print('保存{}行'.format(len(tmp)))
 
+
 if __name__ == '__main__':
     # save_txt("汇总/new_neg.txt")
     save("汇总/new.txt")
-    pass

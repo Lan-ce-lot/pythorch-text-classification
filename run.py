@@ -7,18 +7,19 @@
 @file: run.py
 @time: 2021/4/1 22:05
 """
-import time
-import torch
-import numpy as np
-from train_eval import train, init_network
-from importlib import import_module
 import argparse
+import time
+from importlib import import_module
+
+import numpy as np
+import torch
+
+from train_eval import train
 from utils import build_dataset, build_iterator, get_time_dif
 
 parser = argparse.ArgumentParser(description='Chinese Text Classification')
 parser.add_argument('--model', type=str, required=True, help='choose a model: Bert, ERNIE')
 args = parser.parse_args()
-
 
 if __name__ == '__main__':
     # dataset = 'THUCNews'  # 数据集

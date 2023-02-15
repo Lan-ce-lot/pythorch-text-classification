@@ -7,9 +7,10 @@
 @file: bert_test.py
 @time: 2021/6/9 20:52
 """
-import torch
 from importlib import import_module
-import models.bert
+
+import torch
+
 from utils import build_iterator
 
 PAD, CLS = '[PAD]', '[CLS]'  # padding符号, bert中综合信息符号

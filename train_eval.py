@@ -7,17 +7,17 @@
 @file: train_eval.py
 @time: 2021/4/1 22:05
 """
+import time
+
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sklearn import metrics
-import time
 from tensorboardX import SummaryWriter
-from torch.autograd import Variable
 
-from utils import get_time_dif
 from pytorch_pretrained.optimization import BertAdam
+from utils import get_time_dif
 
 
 # 权重初始化，默认xavier

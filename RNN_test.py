@@ -9,11 +9,12 @@
 """
 import logging
 import os
-import torch
 import pickle as pkl
-import models.bert
-from my_utils import build_iterator
 from importlib import import_module
+
+import torch
+
+from my_utils import build_iterator
 
 UNK, PAD = '<UNK>', '<PAD>'  # 未知字，padding符号
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -24,6 +25,8 @@ config = x.Config(dataset, embedding='embedding_SougouNews.npz')
 model = x.Model(config)
 # map_location = torch.device('cpu')
 model.load_state_dict(torch.load('data/saved_dict/TextRNN.ckpt', map_location=torch.device('cpu')))
+
+
 # model.load_state_dict(torch.load('data/saved_dict/bert.ckpt', map_location=torch.device('cpu')))
 
 def read(s):

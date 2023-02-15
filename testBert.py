@@ -7,16 +7,17 @@
 @file: testBert.py
 @time: 2021/4/1 22:05
 """
-import torch
 import time
+
+import numpy as np
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from pytorch_pretrained import BertModel, BertTokenizer, BertConfig, BertAdam
-import numpy as np
-from torch.autograd import Variable
 from torch.utils.data import DataLoader, TensorDataset, RandomSampler, SequentialSampler
 from tqdm import tqdm
+
 from data_prepro import data_processor
+from pytorch_pretrained import BertModel, BertTokenizer, BertAdam
 
 # BatchSampler
 path = "chinesenews/data/"
