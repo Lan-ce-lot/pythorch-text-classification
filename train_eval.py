@@ -13,7 +13,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from sklearn import metrics
 import time
-
+from tensorboardX import SummaryWriter
 from torch.autograd import Variable
 
 from utils import get_time_dif
@@ -57,10 +57,13 @@ def train(config, model, train_iter, dev_iter, test_iter):
     last_improve = 0  # 记录上次验证集loss下降的batch数
     flag = False  # 记录是否很久没有效果提升
     model.train()
+    ff = 0
+    writer = SummaryWriter(log_dir=config.log_path + '/' + time.strftime('%m-%d_%H.%M', time.localtime()))
     for epoch in range(config.num_epochs):
         print('Epoch [{}/{}]'.format(epoch + 1, config.num_epochs))
 
         for i, (trains, labels) in enumerate(train_iter):
+
             # trains.requires_grad_(True)
             # labels.requires_grad_(True)
             # with torch.no_grad():
@@ -87,6 +90,10 @@ def train(config, model, train_iter, dev_iter, test_iter):
                 time_dif = get_time_dif(start_time)
                 msg = 'Iter: {0:>6},  Train Loss: {1:>5.2},  Train Acc: {2:>6.2%},  Val Loss: {3:>5.2},  Val Acc: {4:>6.2%},  Time: {5} {6}'
                 print(msg.format(total_batch, loss.item(), train_acc, dev_loss, dev_acc, time_dif, improve))
+                writer.add_scalar("loss/train", loss.item(), total_batch)
+                writer.add_scalar("loss/dev", dev_loss, total_batch)
+                writer.add_scalar("acc/train", train_acc, total_batch)
+                writer.add_scalar("acc/dev", dev_acc, total_batch)
                 model.train()
             total_batch += 1
             if total_batch - last_improve > config.require_improvement:
@@ -94,8 +101,12 @@ def train(config, model, train_iter, dev_iter, test_iter):
                 print("No optimization for a long time, auto-stopping...")
                 flag = True
                 break
+            if ff == 0:
+                writer.add_graph(model, (trains,), True)
+                ff = 1
         if flag:
             break
+    writer.close()
     test(config, model, test_iter)
 
 

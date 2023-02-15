@@ -43,6 +43,6 @@ if __name__ == '__main__':
 
     # train
     model = x.Model(config).to(config.device)
-    print(type(config))
-    print(type(model))
+    # print(type(config))
+    # print(type(model))
     train(config, model, train_iter, dev_iter, test_iter)

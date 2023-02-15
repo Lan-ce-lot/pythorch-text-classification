@@ -53,6 +53,7 @@ class DatasetIterator(object):
         self.batch_size = batch_size
         self.batches = batches
         self.n_batches = len(batches) // batch_size
+        self.n_batches = 1 if self.n_batches == 0 else self.n_batches
         self.residue = False  # 记录batch数量是否为整数
         if len(batches) % self.n_batches != 0:
             self.residue = True
@@ -65,6 +66,7 @@ class DatasetIterator(object):
 
         # pad前的长度(超过pad_size的设为pad_size)
         seq_len = torch.LongTensor([_[2] for _ in datas]).to(self.device)
+        # mask 是bert 专有的
         mask = torch.LongTensor([_[3] for _ in datas]).to(self.device)
         return (x, seq_len, mask), y
 
