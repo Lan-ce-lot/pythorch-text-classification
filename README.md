@@ -1,5 +1,6 @@
 # 基于神经网络的文本分类
 
+![](https://img.shields.io/github/license/bitcookies/winrar-keygen.svg)
 [![](https://img.shields.io/badge/language-python-blue.svg)](https://github.com/Lan-ce-lot)
 ![](https://img.shields.io/badge/license-Apache-blue.svg)
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/lan-ce-lot/pythorch_text_classification/master?logoColor=blue)
@@ -25,20 +26,21 @@ python run.py --model bert
 
 
 ## 🌏 环境
-> * python 3.7
-> * pytorch 1.7
+> * python 3.8
+> * pytorch 1.3.1
 
 ## 💾 数据集
 
-![img_8.png](img/img_8.png)
-
-![img_7.png](img/img_7.png)
-
 >爬取自[豆瓣短评](https://movie.douban.com/)
->
 >豆瓣改版后加了很反爬机制，爬多了会封ip封号，解决办法：
 > * 代理ip(免费不能用，要钱买不起)
 > * 随机时间(>=5s)+随机User-Agent
+
+![img_7.png](img/img_7.png)
+
+
+![img_8.png](img/img_8.png)
+
 ## 🚙 模型
 * BERT(Bidirectional Encoder Representations from Transformers) ✅
 * ERNIE(Enhanced Representation through kNowledge IntEgration) ✅
@@ -58,15 +60,23 @@ BiLSTM和BERT在训练集上的准确率对比
 BiLSTM和BERT在训练集上的loss对比
 
 ---
+| *模型*   | *训练集损失率* | *训练集准确率* | *测试集损失率* | *测试集准确率* |
+|--------|----------|----------|----------|----------|
+| BiLSTM | 0.29     | 0. 93    | 0.32     | 0.87     |
+| BERT   | 0.03     | 0. 98    | 0.21     | 0.92     |
 
 模型	训练集损失率	训练集准确率	测试集损失率	测试集准确率
 BiLSTM	0.29	0. 93	0.32	0.87
 BERT	0.03	0. 98	0.21	0.92
 
-模型	训练集损失率	训练集准确率	测试集损失率	测试集准确率
-BiLSTM	0.29	0. 93	0.32	0.87
-BERT	0.03	0. 98	0.21	0.92
 
+
+| *模型*   | *评论类别* | *准确率*  | *召回率*  | *f1-score* | *评论数量* |
+|--------|--------|--------|--------|------------|--------|
+| BiLSTM | 好评     | 0.8899 | 0.9238 | 0.9065     | 3779   |
+|        | 差评     | 0.8216 | 0.7543 | 0.7865     | 1758   |
+| BERT   | 好评     | 0.9332 | 0.9619 | 0.9474     | 3779   |
+|        | 差评     | 0.9123 | 0.8521 | 0.8812     | 1758   |
 ## 📈 进度
 
 
