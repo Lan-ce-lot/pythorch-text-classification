@@ -1,9 +1,9 @@
 # 基于神经网络的文本分类
 
-![](https://img.shields.io/github/license/bitcookies/winrar-keygen.svg)
 [![](https://img.shields.io/badge/language-python-blue.svg)](https://github.com/Lan-ce-lot)
 ![](https://img.shields.io/badge/license-Apache-blue.svg)
-![GitHub branch checks state](https://img.shields.io/github/checks-status/lan-ce-lot/pythorch_text_classification/master?logoColor=blue)
+![GitHub branch checks state](https://github.com/Lan-ce-lot/pythorch-text-classification/actions/workflows/python-app.yml/badge.svg)
+<!--![GitHub branch checks state](https://img.shields.io/github/checks-status/lan-ce-lot/pythorch_text_classification/master?logoColor=blue)-->
 
 ## 🌐 介绍
 一个简单的科研训练项目，基于神经网络的文本分类，为啥不做`CV`，还不是因为对`NLP`感兴趣~~(bushi)~~
