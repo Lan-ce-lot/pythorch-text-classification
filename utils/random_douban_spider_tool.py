@@ -7,7 +7,9 @@
 @file: douban_spider_tool.py
 @time: 2021/4/1 22:05
 """
+import json
 import random
+import re
 import time
 
 import requests
@@ -17,13 +19,8 @@ from tqdm import tqdm
 from xlutils.copy import copy
 
 
-
 def do_request(url):
-    cookies = 'bid=2YpxwjK9lvQ; douban-fav-remind=1; ll="118209"; ct=y; push_noty_num=0; push_doumail_num=0; ' \
-              '_pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1617867376%2C%22https%3A%2F%2Fwww.douban.com%2Fsearch%3Fq%3D' \
-              '%25E5%2590%25B8%25E8%25A1%2580%25E9%25AC%25BC%22%5D; _pk_ses.100001.4cf6=*; ' \
-              'dbcl2="214312932:4TztqT8LolA"; ck=xpj9; ' \
-              '_pk_id.100001.4cf6=ce0f0e7bdf63c5fa.1614864188.17.1617867662.1617855456. '
+    cookies = ''
 
     cookies_dict = {}
 
@@ -52,39 +49,34 @@ def do_request(url):
     # t = random.randint(0, 12)
     t = 0
     response = requests.get(url, headers=headers_list[t], cookies=cookies_dict)
-    html_txt = response.text
     if response.status_code != 200:
         print(response.content)
     # print(html_txt)
-    html_etree = etree.HTML(html_txt)
-    comments = html_etree.xpath("//span[@class='short']/text()")
-    stars = html_etree.xpath("//span[@class='comment-info']/span[2]/@class")
-    # print(zip(comments, stars))
-    for i in range(len(stars)):
-        stars[i] = stars[i].split()[0][7:9]
-    for i in range(len(comments)):
-        comments[i] = comments[i].strip()
-    # for i in zip(comments, stars):
-    #     print(i)
-    #     print("*" * 50)
-    if len(comments) == 0:
-        print(headers_list[t])
-    return zip(comments, stars)
+    json_data = json.loads(response.text)
+    # select <span class="short">.*?</span>
+    comment_list = re.findall(r'<span class="short">(.*?)</span>', json_data['html'])
+    print(comment_list)
+    # select <span class="allstar.*?"></span>
+    star_list = re.findall(r'<span class="allstar(.*?) rating"', json_data['html'])
+    print(star_list)
+    return zip(comment_list, star_list)
 
 
-def auto_request(n, program):
+def auto_request(n, mid):
     comments = []
     stars = []
-    # print('https://movie.douban.com/subject/' + program)
     sta = 0
     for i in tqdm(range(n), desc="页面爬取中..."):
         # for i in range(n):
-        time.sleep(random.randint(10, 30))
-        num = i * 20
-        url = 'https://movie.douban.com/subject/' + program + '/comments'
-        url = url + '?' + 'start=' + str(num) + '&limit=20&status=P&sort=new_score'
+        time.sleep(random.randint(5, 15))
+        start = i * 20
+        # url = 'https://movie.douban.com/subject/' + program + '/comments'
+        # url = url + '?' + 'start=' + str(num) + '&limit=200&status=P&sort=new_score'
+        url = \
+            "https://movie.douban.com/subject/{0}/comments?start={1}&limit=20&status=P&sort=new_score&comments_only=1" \
+                .format(mid, start)
         print(url)
-        if sta >= 6:
+        if sta >= 4:
             break
         try:
             res0, res1 = zip(*do_request(url))
@@ -94,7 +86,9 @@ def auto_request(n, program):
             print(repr(e))
             sta += 1
             print('pass' + str(i))
-
+    print(comments)
+    print(stars)
+    print(len(comments))
     res = zip(comments, stars)
 
     return res
@@ -118,7 +112,8 @@ def save_excel(url, par):
 
 def my_catch():
     programs = [
-        '26613692', '35070344', '1295644', '1292052', '26322774', '3742360', '30444960',
+        '26613692',
+        '35070344', '1295644', '1292052', '26322774', '3742360', '30444960',
         '26754233', '33440021', '32579283', '35236741',
         '35207723',
         '3016187',
@@ -195,8 +190,6 @@ def my_catch():
 
 
 if __name__ == '__main__':
-    # url = '111%d'
-    # url = format(url % 100)
-    # print(url)
+    # get_comment('26613692', 0)
+    # auto_request(25, '26613692')
     my_catch()
-    # do_request('https://movie.douban.com/subject/35070344/comments?start=40&limit=20&status=P&sort=new_score')
