@@ -55,10 +55,8 @@ def do_request(url):
     json_data = json.loads(response.text)
     # select <span class="short">.*?</span>
     comment_list = re.findall(r'<span class="short">(.*?)</span>', json_data['html'])
-    print(comment_list)
     # select <span class="allstar.*?"></span>
     star_list = re.findall(r'<span class="allstar(.*?) rating"', json_data['html'])
-    print(star_list)
     return zip(comment_list, star_list)
 
 
